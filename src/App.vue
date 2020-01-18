@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <AddTask />
+    <section class="task-list nes-container with-title">
+      <h3 class="title">Tasks</h3>
+      <Task />
+    </section>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AddTask from './components/AddTask.vue'
+import Task from './components/Task.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    AddTask,
+    Task
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+// @import '../node_modules/nes.css/css/nes.min.css';
+$cursor-url: auto;
+$cursor-click-url: auto;
+
+// base
+@import 'node_modules/nes.css/scss/base/index.scss';
+@import 'node_modules/nes.css/scss/utilities/rounded-corners-mixin.scss';
+
+//components
+@import 'node_modules/nes.css/scss/form/inputs.scss';
+@import 'node_modules/nes.css/scss/elements/containers.scss';
+@import 'node_modules/nes.css/scss/elements/buttons.scss';
+@import 'node_modules/nes.css/scss/elements/text.scss';
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  max-width: 990px;
+  margin: 0 auto;
+  margin-top: 1em;
+}
+
+.task-list {
+  margin-top: 3em;
 }
 </style>
