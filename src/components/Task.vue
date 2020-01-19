@@ -8,22 +8,25 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   data() {
     return {
       data: [],
+      errors: []
     }
   },
   mounted() {
-    axios
+    this.$http
       .get('http://localhost:8000/todo/list')
-      .then(response => (this.data = response.data));
+      .then(response => (this.data = response.data))
+      .catch(e => {
+        this.errors.push(e)
+      })
   }
 }
 </script>
 
+<!-- SCOPED STYLES -->
 <style lang="scss" scoped>
   ul {
     padding-left: 0;
