@@ -1,7 +1,7 @@
 <template>
   <ul>
-    <li v-for="task in data" v-bind:key="task.id" class="nes-container is-rounded with-title">
-      <p v-if="task.status" class="title nes-text" v-bind:class="[task.status === 'done' ? 'is-success' : 'is-primary']">{{ task.status }}</p>
+    <li v-for="task in data" :key="task.id" class="nes-container is-rounded with-title">
+      <p v-if="task.status" class="title nes-text" :class="[task.status === 'done' ? 'is-success' : 'is-primary']">{{ task.status }}</p>
       <p>{{ task.name }}</p>
     </li>
   </ul>
@@ -9,19 +9,28 @@
 
 <script>
 export default {
+  props: {
+    newTaskData: Object
+  },
+
   data() {
     return {
       data: [],
       errors: []
     }
   },
+
   mounted() {
     this.$http
       .get('http://localhost:8000/todo/list')
       .then(response => (this.data = response.data))
-      .catch(e => {
-        this.errors.push(e)
-      })
+      .catch(e => this.errors.push(e))
+  },
+
+  watch: {
+    newTaskData() {
+      this.data = [this.newTaskData, ...this.data]
+    }
   }
 }
 </script>
@@ -43,7 +52,7 @@ export default {
   .nes-container {
     .with-title {
       .title {
-        font-size: 14px;
+        font-size: 12px;
       }
     }
   }

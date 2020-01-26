@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <AddTask />
-    <section class="task-list nes-container with-title">
+    <AddTask @getInputData="getInputData" />
+    <section class="task-list nes-container is-error with-title">
       <h3 class="title">Tasks</h3>
-      <Task />
+      <Task :newTaskData="data" />
     </section>
   </div>
 </template>
@@ -17,6 +17,18 @@ export default {
   components: {
     AddTask,
     Task
+  },
+
+  data() {
+    return {
+      data: {}
+    }
+  },
+
+  methods: {
+    getInputData(inputData) {
+      this.data = inputData
+    }
   }
 }
 </script>
@@ -28,10 +40,11 @@ $cursor-click-url: auto;
 
 // base
 @import 'node_modules/nes.css/scss/base/index.scss';
-@import 'node_modules/nes.css/scss/utilities/rounded-corners-mixin.scss';
+@import 'node_modules/nes.css/scss/utilities';
 
 //components
 @import 'node_modules/nes.css/scss/form/inputs.scss';
+@import 'node_modules/nes.css/scss/form/checkboxes.scss';
 @import 'node_modules/nes.css/scss/elements/containers.scss';
 @import 'node_modules/nes.css/scss/elements/buttons.scss';
 @import 'node_modules/nes.css/scss/elements/text.scss';
@@ -40,6 +53,10 @@ $cursor-click-url: auto;
   max-width: 990px;
   margin: 0 auto;
   margin-top: 1em;
+}
+
+body {
+  font-size: 14px;
 }
 
 .task-list {
