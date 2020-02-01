@@ -3,7 +3,7 @@
     <AddTask @getInputData="getInputData" />
     <section class="task-list nes-container is-error with-title">
       <h3 class="title">Tasks</h3>
-      <Task :newTaskData="data" />
+      <Task :data="data" />
     </section>
   </div>
 </template>
@@ -21,13 +21,21 @@ export default {
 
   data() {
     return {
-      data: {}
+      data: [],
+      errors: []
     }
+  },
+
+   mounted() {
+    this.$http
+      .get('http://localhost:8000/todo/list')
+      .then(response => (this.data = response.data))
+      .catch(e => this.errors.push(e))
   },
 
   methods: {
     getInputData(inputData) {
-      this.data = inputData
+      this.data = [inputData, ...this.data]
     }
   }
 }
