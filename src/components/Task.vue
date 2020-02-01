@@ -1,7 +1,8 @@
 <template>
   <ul>
     <li v-for="task in data" :key="task.id" class="nes-container is-rounded with-title">
-      <p v-if="task.status" class="title nes-text" :class="[task.status === 'done' ? 'is-success' : 'is-primary']">{{ task.status }}</p>
+      <span v-if="task.done" class="title nes-text is-success">Done</span>
+      <span v-if="task.inProgress" class="title nes-text is-primary">Progress</span>
       <p>{{ task.name }}</p>
     </li>
   </ul>
@@ -10,27 +11,7 @@
 <script>
 export default {
   props: {
-    newTaskData: Object
-  },
-
-  data() {
-    return {
-      data: [],
-      errors: []
-    }
-  },
-
-  mounted() {
-    this.$http
-      .get('http://localhost:8000/todo/list')
-      .then(response => (this.data = response.data))
-      .catch(e => this.errors.push(e))
-  },
-
-  watch: {
-    newTaskData() {
-      this.data = [this.newTaskData, ...this.data]
-    }
+    data: Array
   }
 }
 </script>
