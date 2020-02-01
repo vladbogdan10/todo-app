@@ -6,7 +6,7 @@
       <button @click="saveTask" type="button" class="nes-btn is-primary">Add Task</button>
     </div>
     <label>
-      <input type="checkbox" class="nes-checkbox" />
+      <input v-model="data.progress" type="checkbox" class="nes-checkbox" />
       <span>Set in progress</span>
     </label>
   </div>
@@ -18,7 +18,8 @@ export default {
     return {
       data: {
         name: '',
-        status: ''
+        done: null,
+        progress: null
       },
       errors: [],
       response: []
@@ -34,8 +35,17 @@ export default {
         .finally(() => {
           if (!this.errors.length) {
             this.updateView();
+            this.clearInputs();
           }
         })
+    },
+
+    clearInputs() {
+      this.data = {
+        name: '',
+        done: null,
+        progress: null
+      }
     },
 
     updateView() {
