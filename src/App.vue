@@ -1,27 +1,24 @@
 <template>
   <div id="app">
     <AddTask @getInputData="getInputData" />
-    <section class="task-list nes-container is-error with-title">
-      <h3 class="title">Tasks</h3>
-      <Task :data="data" />
-    </section>
+    <TaskList :data="taskList" />
   </div>
 </template>
 
 <script>
 import AddTask from './components/AddTask.vue'
-import Task from './components/Task.vue'
+import TaskList from './components/TaskList.vue'
 
 export default {
   name: 'app',
   components: {
     AddTask,
-    Task
+    TaskList
   },
 
   data() {
     return {
-      data: [],
+      taskList: [],
       errors: []
     }
   },
@@ -29,13 +26,13 @@ export default {
    created() {
     this.$http
       .get('http://localhost:8000/todo/list')
-      .then(response => (this.data = response.data))
+      .then(response => (this.taskList = response.data))
       .catch(e => this.errors.push(e))
   },
 
   methods: {
     getInputData(inputData) {
-      this.data = [inputData, ...this.data]
+      this.taskList = [inputData, ...this.taskList]
     }
   }
 }
