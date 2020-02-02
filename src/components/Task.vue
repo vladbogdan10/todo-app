@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  name: "Task",
   props: {
     data: Array
   }
