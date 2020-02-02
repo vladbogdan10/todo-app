@@ -26,7 +26,7 @@ export default {
     }
   },
 
-   mounted() {
+   created() {
     this.$http
       .get('http://localhost:8000/todo/list')
       .then(response => (this.data = response.data))
