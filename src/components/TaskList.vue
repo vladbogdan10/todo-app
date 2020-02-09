@@ -1,7 +1,7 @@
 <template>
   <section class="task-list nes-container is-error with-title">
     <h3 class="title">Tasks</h3>
-    <Task v-bind="$props" @deleteTask="deleteTask" />
+    <Task v-bind="$props" />
   </section>
 </template>
 
@@ -16,12 +16,6 @@ export default {
 
   props: {
     data: Array
-  },
-
-  methods: {
-    deleteTask(taskId) {
-      this.$emit('deleteTask', taskId)
-    }
   }
 };
 </script>
