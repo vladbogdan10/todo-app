@@ -31,3 +31,11 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+button {
+  align-self: center;
+  width: 3em;
+  margin-left: 0.8em;
+}
+</style>
