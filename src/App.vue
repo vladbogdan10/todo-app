@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <AddTask @getInputData="getInputData" />
+    <AddTask @updateTaskList="updateTaskList" />
     <TaskList :data="taskList" />
   </div>
 </template>
@@ -23,16 +23,19 @@ export default {
     }
   },
 
-   created() {
+  created() {
     this.$http
-      .get('http://localhost:8000/todo/list')
+      .get('/list')
       .then(response => (this.taskList = response.data))
       .catch(e => this.errors.push(e))
   },
 
   methods: {
-    getInputData(inputData) {
-      this.taskList = [inputData, ...this.taskList]
+    updateTaskList() {
+      this.$http
+        .get('/list?last')
+        .then(response => (this.taskList = [response.data, ...this.taskList]))
+        .catch(e => this.errors.push(e))
     }
   }
 }
