@@ -1,13 +1,12 @@
 <template>
   <div class="nes-field">
-    <label for="name_field">Add new task</label>
     <div class="add-task">
       <input v-model.lazy="data.name" type="text" id="name_field" class="nes-input" />
       <button @click="saveTask" type="button" class="nes-btn is-primary">Add Task</button>
     </div>
     <label>
       <input v-model="data.progress" type="checkbox" class="nes-checkbox" />
-      <span>Set in progress</span>
+      <span>set in progress</span>
     </label>
   </div>
 </template>
@@ -59,11 +58,10 @@ export default {
 <style lang="scss" scoped>
   .add-task {
     display: flex;
-    margin-bottom: 10px;
+    margin: 1.5em 0 0.8em 0;
 
     button {
-      margin-left: 10px;
-      min-width: 150px;
+      margin-left: 0.8em;
     }
   }
 </style>
