@@ -30,12 +30,12 @@ export default {
   methods: {
     saveTask() {
       this.$http
-        .post('http://localhost:8000/todo/create', this.data)
+        .post('/create', this.data)
         .then(response => this.response.push(response))
         .catch(e => this.errors.push(e))
         .finally(() => {
           if (!this.errors.length) {
-            this.updateView();
+            this.updateTaskList();
             this.clearInputs();
           }
         })
@@ -49,8 +49,8 @@ export default {
       }
     },
 
-    updateView() {
-      this.$emit('getInputData', this.data)
+    updateTaskList() {
+      this.$emit('updateTaskList')
     }
   }
 };
