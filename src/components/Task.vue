@@ -1,10 +1,10 @@
 <template>
   <ul>
-    <li v-for="task in data" :key="task.id" :id="task.id" class="nes-container is-rounded with-title">
+    <li v-for="(task, index) in data" :key="task.id" class="nes-container is-rounded with-title">
       <span v-if="task.done" class="title nes-text is-success">Done</span>
       <span v-if="task.inProgress" class="title nes-text is-primary">Progress</span>
       <p>{{ task.name }}</p>
-      <DeleteTask @deleteTask="$emit('deleteTask', task.id)" />
+      <DeleteTask :index="index" :task="task" @removeFromList="removeFromList" />
     </li>
   </ul>
 </template>
@@ -20,6 +20,12 @@ export default {
 
   props: {
     data: Array
+  },
+
+  methods: {
+    removeFromList(index){
+      this.$delete(this.data, index)
+    }
   }
 }
 </script>
