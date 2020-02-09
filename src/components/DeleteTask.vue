@@ -9,24 +9,24 @@ export default {
   data() {
     return {
       response: [],
-      errors: [],
-      taskId: ''
+      errors: []
     }
   },
 
   methods: {
-    deleteTask(e) {
-      this.taskId = e.target.parentNode.attributes.id.value;
-
-      // this.$http
-      //   .delete(`http://localhost:8000/todo/delete/${taskId}`)
-      //   .then()
-      //   .catch(e => this.errors.push(e))
-      this.deleteFromList()
+    deleteTask() {
+      this.$http
+        .delete(`/delete/${this.$attrs.task.id}`)
+        .catch(e => this.errors.push(e))
+        .finally(() => {
+          if (!this.errors.length) {
+            this.removeFromList()
+          }
+        })
     },
 
-    deleteFromList() {
-      this.$emit('deleteTask', this.taskId)
+    removeFromList() {
+      this.$emit('removeFromList', this.$attrs.index)
     }
   }
 };
