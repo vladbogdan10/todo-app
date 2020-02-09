@@ -1,7 +1,8 @@
 <template>
   <div id="app">
+    <h1>8-bit todo app</h1>
     <AddTask @updateTaskList="updateTaskList" />
-    <TaskList :data="taskList" />
+    <TaskList :taskList="taskList" />
   </div>
 </template>
 
@@ -57,17 +58,14 @@ $cursor-click-url: auto;
 @import 'node_modules/nes.css/scss/elements/buttons.scss';
 @import 'node_modules/nes.css/scss/elements/text.scss';
 
-#app {
-  max-width: 990px;
-  margin: 0 auto;
-  margin-top: 1em;
-}
-
 body {
   font-size: 14px;
 }
 
-.task-list {
+#app {
+  max-width: 990px;
+  margin: 0 auto;
   margin-top: 3em;
+  padding: 0 2em;
 }
 </style>
