@@ -16,7 +16,7 @@ export default {
   methods: {
     deleteTask() {
       this.$http
-        .delete(`/delete/${this.$attrs.task.id}`)
+        .delete(`/delete/${this.$attrs.taskId}`)
         .catch(e => this.errors.push(e))
         .finally(() => {
           if (!this.errors.length) {
