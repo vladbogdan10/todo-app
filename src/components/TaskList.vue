@@ -4,7 +4,8 @@
     <ul>
       <li v-for="(task, index) in taskList" :key="task.id">
         <Task :task="task" :index="index" />
-        <DeleteTask :index="index" :task="task" @removeFromList="removeFromList" />
+        <UpdateTask :index="index" :task="task" @updateStatus="updateStatus" />
+        <DeleteTask :index="index" :taskId="task.id" @removeFromList="removeFromList" />
       </li>
     </ul>
   </section>
@@ -12,12 +13,14 @@
 
 <script>
 import Task from '../components/Task.vue'
+import UpdateTask from '../components/UpdateTask.vue'
 import DeleteTask from '../components/DeleteTask.vue'
 
 export default {
   name: "TaskList",
   components: {
     Task,
+    UpdateTask,
     DeleteTask
   },
 
@@ -26,6 +29,11 @@ export default {
   },
 
   methods: {
+    updateStatus(index, data) {
+      this.taskList[index].done = data.done
+      this.taskList[index].inProgress = data.progress
+    },
+
     removeFromList(index){
       this.$delete(this.taskList, index)
     }
