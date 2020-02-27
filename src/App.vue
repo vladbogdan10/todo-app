@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <h1>8-bit todo app</h1>
+    <h1>
+      <i class="snes-jp-logo"></i>
+      8-bit todo app
+    </h1>
     <AddTask @updateTaskList="updateTaskList" />
     <TaskList :taskList="taskList" />
   </div>
@@ -43,29 +46,29 @@ export default {
 </script>
 
 <style lang="scss">
-// @import '../node_modules/nes.css/css/nes.min.css';
-$cursor-url: auto;
-$cursor-click-url: auto;
+@import '../node_modules/nes.css/css/nes.min.css';
+// $cursor-url: auto;
+// $cursor-click-url: auto;
 
 // base
-@import 'node_modules/nes.css/scss/base/index.scss';
-@import 'node_modules/nes.css/scss/utilities';
+// @import 'node_modules/nes.css/scss/base/index.scss';
+// @import 'node_modules/nes.css/scss/utilities';
 
 //components
-@import 'node_modules/nes.css/scss/form/inputs.scss';
-@import 'node_modules/nes.css/scss/form/checkboxes.scss';
-@import 'node_modules/nes.css/scss/elements/containers.scss';
-@import 'node_modules/nes.css/scss/elements/buttons.scss';
-@import 'node_modules/nes.css/scss/elements/text.scss';
+// @import 'node_modules/nes.css/scss/form/inputs.scss';
+// @import 'node_modules/nes.css/scss/form/checkboxes.scss';
+// @import 'node_modules/nes.css/scss/form/radios.scss';
+// @import 'node_modules/nes.css/scss/elements/containers.scss';
+// @import 'node_modules/nes.css/scss/elements/buttons.scss';
+// @import 'node_modules/nes.css/scss/elements/text.scss';
 
 body {
-  font-size: 14px;
-}
+    font-size: 14px;
+  }
 
-#app {
-  max-width: 990px;
-  margin: 0 auto;
-  margin-top: 3em;
-  padding: 0 2em;
-}
+  #app {
+    max-width: 990px;
+    margin: 3em auto 0;
+    padding: 0 2em;
+  }
 </style>
