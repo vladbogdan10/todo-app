@@ -1,5 +1,5 @@
 <template>
-  <button @click="deleteTask" type="button" class="nes-btn is-error"><b>&#10005;</b></button>
+  <input @click="deleteTask" type="button" class="nes-btn is-error" value="Delete">
 </template>
 
 <script>
@@ -33,9 +33,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-button {
-  align-self: center;
-  width: 3em;
-  margin-left: 0.8em;
-}
+  input[type=button] {
+    margin-top: 1em;
+    width: 100%;
+  }
 </style>
