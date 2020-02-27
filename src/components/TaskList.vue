@@ -1,27 +1,21 @@
 <template>
-  <section class="task-list nes-container with-title">
+  <section class="task-list">
     <h3 class="title">TASK LIST</h3>
     <ul>
       <li v-for="(task, index) in taskList" :key="task.id">
-        <Task :task="task" :index="index" />
-        <UpdateTask :index="index" :task="task" @updateStatus="updateStatus" />
-        <DeleteTask :index="index" :taskId="task.id" @removeFromList="removeFromList" />
+        <Task :task="task" :index="index" @updateStatus="updateStatus" @removeFromList="removeFromList" />
       </li>
     </ul>
   </section>
 </template>
 
 <script>
-import Task from '../components/Task.vue'
-import UpdateTask from '../components/UpdateTask.vue'
-import DeleteTask from '../components/DeleteTask.vue'
+import Task from './Task.vue'
 
 export default {
   name: "TaskList",
   components: {
-    Task,
-    UpdateTask,
-    DeleteTask
+    Task
   },
 
   props: {
@@ -38,20 +32,20 @@ export default {
       this.$delete(this.taskList, index)
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
   .task-list {
-    margin-top: 3em;
+    margin-top: 4em;
   }
 
   ul {
-    // padding-left: 0;
-    padding: 2em 0 0 0;
+    max-height: 60vh;
+    overflow: scroll;
+    padding: 0.5em 0 0 0;
 
     li {
-      display: flex;
       list-style: none;
 
       &:not(:first-child) {
