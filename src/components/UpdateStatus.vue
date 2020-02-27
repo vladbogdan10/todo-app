@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'UpdateTask',
+  name: 'UpdateStatus',
 
   data() {
     return {
