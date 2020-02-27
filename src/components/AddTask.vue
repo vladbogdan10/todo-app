@@ -1,7 +1,7 @@
 <template>
   <div class="nes-field">
     <div class="add-task">
-      <input v-model.lazy="data.name" type="text" id="name_field" class="nes-input" />
+      <input v-model.lazy="data.name" @keyup.enter="saveTask" type="text" id="name_field" class="nes-input" placeholder="Create new task" />
       <button @click="saveTask" type="button" class="nes-btn is-primary">Add Task</button>
     </div>
     <label>
